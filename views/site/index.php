@@ -12,20 +12,20 @@ $this->title = 'Last News';
             <div class="container">
                 <div class="row">
 
-                <?php for ($i=1; $i < 11 ; $i++): ?>
+                <?php foreach($articles as $article): ?>
             
                     <div class="col-lg-3">
                         <div class="article">
-                            <a href="<?= Url::toRoute(['site/view']); ?>">
-                                <img src="<?=''?>" alt="Image" class="article__img">
+                            <a href="<?= Url::toRoute(['site/view', 'id' => $article->id]); ?>">
+                                <img src="<?= $article->img ?>" alt="Image" class="article__img">
                                 <div class="article__block">                    
-                                    <h3 class="article__title"><?='Lorem Ipsum'?></h3>
+                                    <h3 class="article__title"><?= $article->title ?></h3>
                             </a>       
                                 </div>
                         </div>
                     </div>  
 
-                <?php endfor; ?>
+                <?php endforeach; ?>
              
                 </div>
             </div>

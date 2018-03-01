@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use app\models\Article;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
@@ -61,12 +62,27 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $data = Article::getAll();
+        return $this->render('index', ['articles' => $data['articles']
+           
+    ]);
     }
 
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('single');
+        $article = Article::findOne($id);
+
+        if ( !empty($article) ) 
+        {
+
+        return $this->render('single', ['article' => $article                                                                   
+        ]);
+        
+        }
+        else 
+        {
+            return $this->render('error'); 
+        }
     }
 
     /**
