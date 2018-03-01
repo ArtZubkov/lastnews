@@ -10,30 +10,24 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="article-view">
+<div class="content">
+    <div class="container">
+        <h1>Успешно сохранено</h1>
+        <p>
+            <?= Html::a('К списку новостей', ['index'], ['class' => 'btn btn-default']) ?>
+            <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        </p>       
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                'img',
+                'title',
+                'description:ntext',
+                'pubdate',
             ],
         ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'img',
-            'title',
-            'description:ntext',
-            'pubdate',
-        ],
-    ]) ?>
-
+    </div>
 </div>
