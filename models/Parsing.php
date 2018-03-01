@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+
 use linslin\yii2\curl;
 
 require_once '../vendor/coderockr/php-query/src/phpQuery.php';
@@ -49,7 +50,8 @@ class Parsing
 			$hrefs[] = pq($link)->attr('href');
 		}
 
-	
+		$data = Article::getAll();
+
 		//Парсинг по ссылкам
 		
 		$i=0;
@@ -69,13 +71,25 @@ class Parsing
 			//echo $pubdate . '<hr>';
 
 
+			if ($data['articles'] == null) {
+				Yii::$app->db->createCommand()->insert('article', [
+			    	'img' => $img,
+			    	'title' => $title,
+			    	'description' => $description,
+			    	'pubdate' => $pubdate,
+					])->execute();
+
+			} else {
+
+
 			Yii::$app->db->createCommand()->update('article', [
-			    'image' => $img,
+			    'img' => $img,
 			    'title' => $title, 
 			    'description' => $description,
 			    'pubdate' => $pubdate,
 			], [
 				'id' => $i ])->execute();
+			}
 		}
 
 		//Подчищаем память

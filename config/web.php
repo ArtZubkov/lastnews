@@ -50,6 +50,12 @@ $config = [
             'rules' => [
             ],
         ],
+
+        
+        'formatter' => [
+            'datetimeFormat' => 'H:i',
+            'defaultTimeZone' => 'Europe/Moscow',
+       ],
         
     ],
 

@@ -48,4 +48,19 @@ class Article extends \yii\db\ActiveRecord
             'pubdate' => 'Pubdate',
         ];
     }
+
+
+    public static function getAll()
+    {
+        $query = Article::find();
+        $articles = $query->orderBy('id asc')->limit(10)->all();
+        $data = ['articles' => $articles];
+        return $data;       
+
+    }
+
+    public function getPubdate()
+    {      
+        return Yii::$app->formatter->asDateTime($this->pubdate, 'php:G:i');     
+    }
 }

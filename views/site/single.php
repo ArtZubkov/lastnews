@@ -1,5 +1,5 @@
 <?php  
-$this->title = 'Lorem Ipsum';
+$this->title = $article->title;
 ?>
 
 
@@ -10,12 +10,12 @@ $this->title = 'Lorem Ipsum';
 			
 				<div class="col-lg-6">
 					<div class="article__full">
-						<img src="<?=''?>" alt="Image" class="article__full__img">
+						<img src="<?= $article->img ?>" alt="Image" class="article__full__img">
 						<div class="article__full__block">
-							<h3 class="article__full__title"><?='Lorem Ipsum'?></h3>
-							<p class="article__full__text"><?="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"?></p>
+							<h3 class="article__full__title"><?= $article->title ?></h3>
+							<p class="article__full__text"><?= $article->description ?></p>
 							<time class="article__full__pubdate">
-								<?='pubdate'?>
+								<?= $article->getPubdate() ?>
 							</time>
 						</div>
 					</div>
